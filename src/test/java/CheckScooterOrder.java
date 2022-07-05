@@ -1,88 +1,65 @@
-import PageObject.HomePageScooter;
-import PageObject.OrderPageScooter;
+import dataforpo.ScooterUrls;
+import dataforpo.Order;
+import org.junit.Before;
+import pageobject.HomePageScooter;
+import pageobject.OrderPageScooter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.After;
 import org.junit.Test;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class CheckScooterOrder {
     private WebDriver driver;
-    @Test
-    public void testChromeHeaderOrderButtonShortFields() {
-        WebDriverManager.chromedriver().setup();
-        // создаем драйвер для браузера Chrome
-        driver = new ChromeDriver();
-        // переходим на страницу тестового приложения
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+    Order order;
 
+    @Before
+    public void initialize(){
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.get(ScooterUrls.HOME_URL);
+    }
+
+    @Test
+    public void testHeaderOrderButtonShortFields() {
         HomePageScooter objHomePage = new HomePageScooter(driver);
         OrderPageScooter objOrderPage = new OrderPageScooter(driver);
+        Order order = new Order(driver);
         objHomePage.closeCookiePopup();
         objHomePage.clickOnHeaderOrderButton();
-        objOrderPage.firstPageFieldsShort();
-        objOrderPage.secondPageFieldsWithoutCommentary();
-        objOrderPage.clickOnOrderButton();
+        objOrderPage.sendKeysToOrderFields(order.names[0], order.surnames[0], order.addresses[0], order.telephones[0], null);
         objOrderPage.checkOrderSuccessPopup();
-    }
-    @After
-    public void teardownChromeOrderButtonShortFields() {
-        driver.quit();
     }
 
     @Test
-    public void testChromeHeaderOrderButtonLongFields() {
-        WebDriverManager.chromedriver().setup();
-        // создаем драйвер для браузера Chrome
-        driver = new ChromeDriver();
-        // переходим на страницу тестового приложения
-        driver.get("https://qa-scooter.praktikum-services.ru/");
-
+    public void testHeaderOrderButtonLongFields() {
         HomePageScooter objHomePage = new HomePageScooter(driver);
         OrderPageScooter objOrderPage = new OrderPageScooter(driver);
+        Order order = new Order(driver);
         objHomePage.closeCookiePopup();
         objHomePage.clickOnHeaderOrderButton();
-        objOrderPage.firstPageFieldsLong();
-        objOrderPage.secondPageFieldsWithCommentary();
-        objOrderPage.clickOnOrderButton();
+        objOrderPage.sendKeysToOrderFields(order.names[1], order.surnames[1], order.addresses[1], order.telephones[1], order.commentary);
         objOrderPage.checkOrderSuccessPopup();
     }
-    @After
-    public void teardownChromeOrderButtonLongFields() {
-        driver.quit();
-    }
-
     @Test
-    public void testChromeBottomOrderButtonLongFields() {
-        WebDriverManager.chromedriver().setup();
-        // создаем драйвер для браузера Chrome
-        driver = new ChromeDriver();
-        // переходим на страницу тестового приложения
-        driver.get("https://qa-scooter.praktikum-services.ru/");
-
+    public void testBottomOrderButtonLongFields() {
         HomePageScooter objHomePage = new HomePageScooter(driver);
         OrderPageScooter objOrderPage = new OrderPageScooter(driver);
+        Order order = new Order(driver);
         objHomePage.closeCookiePopup();
         objHomePage.clickOnBottomOrderButton();
-        objOrderPage.firstPageFieldsLong();
-        objOrderPage.secondPageFieldsWithCommentary();
-        objOrderPage.clickOnOrderButton();
+        objOrderPage.sendKeysToOrderFields(order.names[1], order.surnames[1], order.addresses[1], order.telephones[1], order.commentary);
         objOrderPage.checkOrderSuccessPopup();
     }
-    @After
-    public void teardownChromeBottomOrderButtonLongFields() {
-        driver.quit();
-    }
 
-
+    /*
     @Test
     public void testFirefoxHeaderOrderButtonShortFields() {
         WebDriverManager.firefoxdriver().setup();
         // создаем драйвер для браузера Firefox
         driver = new FirefoxDriver();
         // переходим на страницу тестового приложения
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(ScooterHomePageURL.HOME_URL);
 
         HomePageScooter objHomePage = new HomePageScooter(driver);
         OrderPageScooter objOrderPage = new OrderPageScooter(driver);
@@ -94,18 +71,13 @@ public class CheckScooterOrder {
         objOrderPage.checkOrderSuccessPopup();
 
     }
-    @After
-    public void teardownFirefoxOrderButtonShortFields() {
-        driver.quit();
-    }
-
     @Test
     public void testFirefoxHeaderOrderButtonLongFields() {
         WebDriverManager.firefoxdriver().setup();
         // создаем драйвер для браузера Firefox
         driver = new FirefoxDriver();
         // переходим на страницу тестового приложения
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(ScooterHomePageURL.HOME_URL);
 
         HomePageScooter objHomePage = new HomePageScooter(driver);
         OrderPageScooter objOrderPage = new OrderPageScooter(driver);
@@ -115,10 +87,6 @@ public class CheckScooterOrder {
         objOrderPage.secondPageFieldsWithCommentary();
         objOrderPage.clickOnOrderButton();
         objOrderPage.checkOrderSuccessPopup();
-    }
-    @After
-    public void teardownFirefoxOrderButtonLongFields() {
-        driver.quit();
     }
 
     @Test
@@ -127,7 +95,7 @@ public class CheckScooterOrder {
         // создаем драйвер для браузера Chrome
         driver = new FirefoxDriver();
         // переходим на страницу тестового приложения
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(ScooterHomePageURL.HOME_URL);
 
         HomePageScooter objHomePage = new HomePageScooter(driver);
         OrderPageScooter objOrderPage = new OrderPageScooter(driver);
@@ -138,8 +106,10 @@ public class CheckScooterOrder {
         objOrderPage.clickOnOrderButton();
         objOrderPage.checkOrderSuccessPopup();
     }
+    */
+
     @After
-    public void teardownFirefoxBottomOrderButtonLongFields() {
+    public void teardown() {
         driver.quit();
     }
 }
