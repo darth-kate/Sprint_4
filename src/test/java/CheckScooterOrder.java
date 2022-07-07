@@ -24,10 +24,10 @@ public class CheckScooterOrder {
     public void testHeaderOrderButtonShortFields() {
         HomePageScooter objHomePage = new HomePageScooter(driver);
         OrderPageScooter objOrderPage = new OrderPageScooter(driver);
-        Order order = new Order(driver);
+        Order order = new Order();
         objHomePage.closeCookiePopup();
         objHomePage.clickOnHeaderOrderButton();
-        objOrderPage.sendKeysToOrderFields(order.names[0], order.surnames[0], order.addresses[0], order.telephones[0], null);
+        objOrderPage.sendKeysToOrderFields(order.NAMES[0], order.SURNAMES[0], order.ADDRESSES[0], order.TELEPHONES[0], null);
         objOrderPage.checkOrderSuccessPopup();
     }
 
@@ -35,20 +35,20 @@ public class CheckScooterOrder {
     public void testHeaderOrderButtonLongFields() {
         HomePageScooter objHomePage = new HomePageScooter(driver);
         OrderPageScooter objOrderPage = new OrderPageScooter(driver);
-        Order order = new Order(driver);
+        Order order = new Order();
         objHomePage.closeCookiePopup();
         objHomePage.clickOnHeaderOrderButton();
-        objOrderPage.sendKeysToOrderFields(order.names[1], order.surnames[1], order.addresses[1], order.telephones[1], order.commentary);
+        objOrderPage.sendKeysToOrderFields(order.NAMES[1], order.SURNAMES[1], order.ADDRESSES[1], order.TELEPHONES[1], order.COMMENTARY);
         objOrderPage.checkOrderSuccessPopup();
     }
     @Test
     public void testBottomOrderButtonLongFields() {
         HomePageScooter objHomePage = new HomePageScooter(driver);
         OrderPageScooter objOrderPage = new OrderPageScooter(driver);
-        Order order = new Order(driver);
+        Order order = new Order();
         objHomePage.closeCookiePopup();
         objHomePage.clickOnBottomOrderButton();
-        objOrderPage.sendKeysToOrderFields(order.names[1], order.surnames[1], order.addresses[1], order.telephones[1], order.commentary);
+        objOrderPage.sendKeysToOrderFields(order.NAMES[1], order.SURNAMES[1], order.ADDRESSES[1], order.TELEPHONES[1], order.COMMENTARY);
         objOrderPage.checkOrderSuccessPopup();
     }
 
