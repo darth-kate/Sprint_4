@@ -1,4 +1,4 @@
-package dataforpo;
+package datafortests;
 
 public class Order {
 

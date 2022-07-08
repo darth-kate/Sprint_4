@@ -1,4 +1,4 @@
-import dataforpo.ScooterUrls;
+import datafortests.ScooterUrls;
 import org.junit.Before;
 import pageobject.HomePageScooter;
 import io.github.bonigarcia.wdm.WebDriverManager;

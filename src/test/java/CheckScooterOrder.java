@@ -1,5 +1,5 @@
-import dataforpo.ScooterUrls;
-import dataforpo.Order;
+import datafortests.ScooterUrls;
+import datafortests.Order;
 import org.junit.Before;
 import pageobject.HomePageScooter;
 import pageobject.OrderPageScooter;
